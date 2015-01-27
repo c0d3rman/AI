@@ -56,7 +56,7 @@ end
 
 function Brain.init(num_states, num_actions)
    -- Number of past state/action pairs input to the network. 0 = agent lives in-the-moment :)
-   Brain.temporal_window = 10
+   Brain.temporal_window = 20
    -- Maximum number of experiences that we will save for training
    Brain.experience_size = 30000     
    -- experience necessary to start learning
@@ -169,10 +169,10 @@ end
    -- do more sophisticated things. For example some actions could be more
    -- or less likely at "rest"/default state.
 function Brain.random_action()
-  -- if we don't have a random action distribution defined then sample evenly
+	-- if we don't have a random action distribution defined then sample evenly
    if(table.length(Brain.random_action_distribution) == 0) then
-    return (torch.random() % Brain.net_outputs) + 1
-    
+   	return (torch.random() % Brain.net_outputs) + 1
+   	
       -- okay, lets do some fancier sampling:
    else 
       local p = randf(0, 1);
@@ -199,10 +199,10 @@ function Brain.policy(state)
  
  -- find maximum output and note its index and value
   for i = 2, Brain.net_outputs do
-    if action_values[i] > maxval then
-      maxval = action_values[i]
-      max_index = i
-    end
+  	if action_values[i] > maxval then
+  		maxval = action_values[i]
+  		max_index = i
+  	end
   end
   
   return {action = max_index, value = maxval};
@@ -289,8 +289,8 @@ function Brain.forward(input_array)
   table.insert( Brain.action_window, action)
   
   return action;
-end   
-
+end    
+    
 --[[ 
 	This function trains the network using the reward resulting from the last action
 	It will save this past experience which consists of:

@@ -7,7 +7,7 @@ nb_train = 5000
 nb_test  = 1000
 
 currentState = 1
-correctActions = {2, 2, 1, 2}
+correctActions = {1, 1, 2, 1, 2, 2}
 rightInARow = 1
 
 print("Training")
